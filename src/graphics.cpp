@@ -28,10 +28,10 @@ void draw_window (void)
   // Point in space
   glPushMatrix();
   //~ HOW TO DRAW POINTS AND BITMAP CHARACTERS
-  //~ glColor3f(1.0, 1.0, 1.0);
-  //~ string s = "Hello";
-  //~ glRasterPos3f(1.0, 1.0, 0.0);
-  //~ for (int i = 0; i < s.length(); i++) glutBitmapCharacter(GLUT_BITMAP_HELVETICA_10, s[i]);
+  glColor3f(1.0, 0.3, 0.3);
+  string s = "A SURVIVAL GAME";
+  glRasterPos3f(0.8, 1.6, 0.0);
+  for (int i = 0; i < s.length(); i++) glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, s[i]);
   //~ glPointSize(3.0);
   //~ glBegin(GL_POINTS);
   //~ glVertex3d(1.0, 1.0, 0.0);

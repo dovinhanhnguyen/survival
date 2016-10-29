@@ -15,8 +15,8 @@ using namespace std;
 
 #define SMALL_NUM 0.0000001
 #define SCALE 2.0 // (m)
-#define PREFERRED_WIDTH 800
-#define PREFERRED_HEIGHT 600
+#define PREFERRED_WIDTH 1024
+#define PREFERRED_HEIGHT 768
 
 // Graphics variables
 int main_window;
