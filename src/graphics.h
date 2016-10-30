@@ -54,5 +54,6 @@ void glut_key (unsigned char k, int x, int y);
 void initialise (void);
 bool setup_texture (string filename, GLuint &id);
 void print_bitmap (float r, float g, float b, float x, float y, float z, string s, void *font);
+void draw_control_bar (double tlx, double tly, double gap_x, double gap_y, double val, double red, double green, double blue, string title);
 
 #endif

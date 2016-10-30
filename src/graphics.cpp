@@ -32,6 +32,36 @@ void bind_texture (GLuint texture_id, float r, float g, float b)
   glColor3f(r, g, b);
 }
 
+void draw_control_bar (double tlx, double tly, double gap_x, double gap_y, double val, double red, double green, double blue, string title)
+  // Draws control bar, top left (tlx, tly), val (fraction, range 0-1), colour (red, green, blue), title
+{
+  if (0.25 <= val && val < 0.5) {
+    red = 1.0;
+    green = 1.0;
+    blue = 0.0;
+  }
+  if (0 <= val && val < 0.25) {
+    red = 1.0;
+    green = 0.0;
+    blue = 0.0;
+  }
+  glColor3f(red, green, blue);
+  glBegin(GL_QUADS);
+  glVertex2d(tlx+0.01, tly-0.01);
+  glVertex2d(tlx+val*gap_x-0.01, tly-0.01);
+  glVertex2d(tlx+val*gap_x-0.01, tly-gap_y+0.01);
+  glVertex2d(tlx+0.01, tly-gap_y+0.01);
+  glEnd();
+  glColor3f(1.0, 1.0, 1.0);
+  glBegin(GL_LINE_LOOP);
+  glVertex2d(tlx, tly);
+  glVertex2d(tlx+gap_x, tly);
+  glVertex2d(tlx+gap_x, tly-gap_y);
+  glVertex2d(tlx, tly-gap_y);
+  glEnd();
+  print_bitmap (1.0, 0.8, 1.0, tlx, tly + 0.05, 0.0, title, GLUT_BITMAP_HELVETICA_10);
+}
+
 void draw_window (void)
   // Draw main GLUT window
 {
@@ -45,25 +75,55 @@ void draw_window (void)
   switch (stage) {
     // TO DO: a tittle for each scene
     case STARTING:
-      print_bitmap(1.0, 0.3, 0.3, 0.8, 1.6, 0.0, "A SURVIVAL GAME", GLUT_BITMAP_TIMES_ROMAN_24);
+      print_bitmap(0.8, 0.8, 0.8, -2.2, -0.2, 0.0, "A SURVIVAL GAME", GLUT_BITMAP_TIMES_ROMAN_24);
       break;
     case MIDDLE:
       switch (my_player.status) {
         case NOT_PLAYING:
+          print_bitmap(0.8, 0.8, 0.8, -1.85, -1.4, 0.0, "Vitals", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
         case BUILDING:
+          print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Hope ...", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
         case EATING:
+          print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Gaining energy ...", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
         case SLEEPING:
+          print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Good night ...", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
       }
       break;
     case ENDING:
       switch (my_player.status) {
         case DEAD:
+          print_bitmap(1.0, 0.8, 1.0, -0.4, 1.0, 0.0, "Game over ...", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
         case ALIVE:
+          print_bitmap(0.2, 0.2, 0.2, -0.7, -1.2, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_TIMES_ROMAN_24);
+          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
           break;
       }
       break;
@@ -95,7 +155,7 @@ void draw_window (void)
   
   switch (stage) {
     case STARTING:
-      bind_texture(starting_texture, 0.7, 0.7, 0.8);
+      bind_texture(starting_texture, 0.8, 0.7, 0.8);
       break;
     case MIDDLE:
       switch (my_player.status) {
