@@ -81,65 +81,39 @@ void draw_window (void)
       switch (my_player.status) {
         case NOT_PLAYING:
           print_bitmap(0.8, 0.8, 0.8, -1.85, -1.4, 0.0, "Vitals", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
+          draw_control_bar (-1.9, 1.0, 1.5, 0.2, my_player.boat/100.0, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (-1.9, 0.4, 1.5, 0.2, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (-1.9, -0.2, 1.5, 0.2, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (-1.9, -0.8, 1.5, 0.2, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
           break;
         case BUILDING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Hope ...", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, my_player.boat/100.0, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
           break;
         case EATING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Gaining energy ...", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, my_player.boat/100.0, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
           break;
         case SLEEPING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Good night ...", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (1.5, 1.6, 0.8, 0.1, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (1.5, 1.3, 0.8, 0.1, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (1.5, 1.0, 0.8, 0.1, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (1.5, 0.7, 0.8, 0.1, 0.9, 0.0, 1.0, 0.0, "Time");
+          draw_control_bar (1.5, 1.6, 0.8, 0.1, my_player.boat/100.0, 0.0, 1.0, 0.0, "Building boat");
+          draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
+          draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
+          draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
           break;
       }
       break;
     case ENDING:
-      switch (my_player.status) {
-        case DEAD:
-          print_bitmap(1.0, 0.8, 1.0, -0.4, 1.0, 0.0, "Game over ...", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
-          break;
-        case ALIVE:
-          print_bitmap(0.2, 0.2, 0.2, -0.7, -1.2, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_TIMES_ROMAN_24);
-          draw_control_bar (-1.9, 1.0, 1.5, 0.2, 0.4, 0.0, 1.0, 0.0, "Building boat");
-          draw_control_bar (-1.9, 0.4, 1.5, 0.2, 0.7, 0.0, 1.0, 0.0, "Stamina");
-          draw_control_bar (-1.9, -0.2, 1.5, 0.2, 0.2, 0.0, 1.0, 0.0, "Sanity");
-          draw_control_bar (-1.9, -0.8, 1.5, 0.2, 0.9, 0.0, 1.0, 0.0, "Time");
-          break;
-      }
+      if (!my_player.alive) print_bitmap(1.0, 0.8, 1.0, -0.4, 1.0, 0.0, "Game over ...", GLUT_BITMAP_TIMES_ROMAN_24);
+      else print_bitmap(0.2, 0.2, 0.2, -0.7, -1.2, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_TIMES_ROMAN_24);
       break;
   }
-  //~ HOW TO DRAW POINTS AND BITMAP CHARACTERS
-  //~ glColor3f(1.0, 0.3, 0.3);
-  //~ string s = "A SURVIVAL GAME";
-  //~ glRasterPos3f(0.8, 1.6, 0.0);
-  //~ for (int i = 0; i < s.length(); i++) glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, s[i]);
-  //~ glPointSize(3.0);
-  //~ glBegin(GL_POINTS);
-  //~ glVertex3d(1.0, 1.0, 0.0);
-  //~ glVertex3d(1.0, -1.0, 0.0);
-  //~ glVertex3d(-1.0, -1.0, 0.0);
-  //~ glVertex3d(-1.0, 1.0, 0.0);
-  //~ glEnd();
   glPopMatrix();
   
   // Scaled up by aspect_ratio
@@ -174,14 +148,8 @@ void draw_window (void)
       }
       break;
     case ENDING:
-      switch (my_player.status) {
-        case DEAD:
-          bind_texture(dead_texture, 0.6, 0.6, 0.8);
-          break;
-        case ALIVE:
-          bind_texture(alive_texture, 1.0, 1.0, 1.0);
-          break;
-      }
+      if (!my_player.alive) bind_texture(dead_texture, 0.6, 0.6, 0.8);
+      else bind_texture(alive_texture, 1.0, 1.0, 1.0);
       break;
   }
   
@@ -210,23 +178,13 @@ void draw_window (void)
 void update_state (void)
   // The GLUT idle function, called every time round the event loop
 {
-  // Update states
-  cout << "Stage " << stage << " Player " << my_player.status << endl;
+  // Check for end game states
+  if (my_player.escaped || !my_player.alive) stage = ENDING;
 
   // Refresh the visualization
   draw_window();
 }
 
-void mouse_button (int button, int state, int x, int y)
-  // Callback for mouse button presses in the orbital view window
-{
-}
-
-//~ vector2d screen_to_space (double x, double y)
-  //~ // Convert position of mouse click in window to 2D coordinates in space
-//~ {
-  //~ return vector2d((x*2.0*SCALE*aspect_ratio/window_width-SCALE*aspect_ratio), (SCALE-y*2.0*SCALE/window_height));
-//~ }
 
 void glut_key (unsigned char k, int x, int y)
   // Callback for key presses in all windows
@@ -243,38 +201,29 @@ void glut_key (unsigned char k, int x, int y)
     break;
   case 'j':
     // Build
-    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = BUILDING;
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
+      my_player.status = BUILDING;
+      my_player.update();
+    }
+    if (stage == MIDDLE && my_player.status == BUILDING) my_player.update();
     break;
   case 'k':
     // Eat
-    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = EATING;
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
+      my_player.status = EATING;
+      my_player.update();
+    }
+    if (stage == MIDDLE && my_player.status == EATING) my_player.update();
     break;
   case 'l':
     // Sleep
-    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = SLEEPING;
-    break;
-  
-  // FOR TESTING ONLY
-  case 'x':
-    // dead
     if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
-      stage = ENDING;
-      my_player.status = DEAD;
+      my_player.status = SLEEPING;
+      my_player.update();
     }
-    break;
-  case 'c':
-    // alive
-    if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
-      stage = ENDING;
-      my_player.status = ALIVE;
-    }
+    if (stage == MIDDLE && my_player.status == SLEEPING) my_player.update();
     break;
   }
-}
-
-void initialise (void)
-  // Initialise something
-{
 }
 
 bool setup_texture (string filename, GLuint &id)
@@ -324,10 +273,9 @@ int main (int argc, char* argv[])
   glutDisplayFunc(draw_window);
   glutReshapeFunc(reshape);
   glutIdleFunc(update_state);
-  glutMouseFunc(mouse_button);
   glutKeyboardFunc(glut_key);
   texture_available = setup_texture("../img/island.png", starting_texture) && setup_texture("../img/red_forest.jpg", not_playing_texture) && setup_texture("../img/building.jpg", building_texture) && setup_texture("../img/eating.jpg", eating_texture) && setup_texture("../img/sleeping.jpg", sleeping_texture) && setup_texture("../img/dead.jpg", dead_texture) && setup_texture("../img/alive.jpg", alive_texture);
-  cout << "Check texture " << texture_available << endl;
+  if (!texture_available) cerr << "Error when loading texture image" << endl;
   
   stage = STARTING;
   glutMainLoop();
