@@ -110,8 +110,11 @@ void draw_window (void)
       }
       break;
     case ENDING:
-      if (!my_player.alive) print_bitmap(1.0, 0.8, 1.0, -0.4, 1.0, 0.0, "Game over ...", GLUT_BITMAP_TIMES_ROMAN_24);
-      else print_bitmap(0.2, 0.2, 0.2, -0.7, -1.2, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_TIMES_ROMAN_24);
+      if (!my_player.alive) {
+        print_bitmap(1.0, 0.8, 1.0, -0.4, 1.0, 0.0, "Game over ...", GLUT_BITMAP_TIMES_ROMAN_24);
+        print_bitmap(1.0, 0.8, 1.0, -0.7, -1.5, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_HELVETICA_18);
+      }
+      else print_bitmap(0.2, 0.2, 0.2, -0.7, -1.4, 0.0, "@ ARM Hackathon 2016", GLUT_BITMAP_TIMES_ROMAN_24);
       break;
   }
   glPopMatrix();
@@ -203,7 +206,7 @@ void glut_key (unsigned char k, int x, int y)
     // Build
     if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
       my_player.status = BUILDING;
-      my_player.update();
+      break;
     }
     if (stage == MIDDLE && my_player.status == BUILDING) my_player.update();
     break;
@@ -211,7 +214,7 @@ void glut_key (unsigned char k, int x, int y)
     // Eat
     if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
       my_player.status = EATING;
-      my_player.update();
+      break;
     }
     if (stage == MIDDLE && my_player.status == EATING) my_player.update();
     break;
@@ -219,7 +222,7 @@ void glut_key (unsigned char k, int x, int y)
     // Sleep
     if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
       my_player.status = SLEEPING;
-      my_player.update();
+      break;
     }
     if (stage == MIDDLE && my_player.status == SLEEPING) my_player.update();
     break;
