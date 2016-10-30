@@ -51,8 +51,35 @@ void draw_window (void)
   glLoadIdentity();
   glPushMatrix();
   glEnable(GL_TEXTURE_2D);
-  if (texture_available) glBindTexture(GL_TEXTURE_2D, texture); // for now
-  else glBindTexture(GL_TEXTURE_2D, texture_2); // for now
+  
+  switch (stage) {
+    case STARTING:
+      glBindTexture(GL_TEXTURE_2D, starting_texture);
+      break;
+    case MIDDLE:
+      switch (my_player.status) {
+        case NOT_PLAYING:
+          glBindTexture(GL_TEXTURE_2D, not_playing_texture);
+          break;
+        case BUILDING:
+          glBindTexture(GL_TEXTURE_2D, building_texture);
+          break;
+        case EATING:
+          break;
+        case SLEEPING:
+          break;
+      }
+      break;
+    case ENDING:
+      switch (my_player.status) {
+        case DEAD:
+          break;
+        case ALIVE:
+          break;
+      }
+      break;
+  }
+  
   glColor3f(1.0, 1.0, 1.0);
   glTranslated(0.0, 0.0, 0.5); // pushed 'into' screen
   glColor3f(0.6, 0.3, 0.3);
@@ -79,6 +106,7 @@ void update_state (void)
   // The GLUT idle function, called every time round the event loop
 {
   // Update states
+  cout << "Stage " << stage << " Player " << my_player.status << endl;
 
   // Refresh the visualization
   draw_window();
@@ -103,9 +131,22 @@ void glut_key (unsigned char k, int x, int y)
     // Escape or q or Q  - exit
     exit(0);
     break;
-  case 'n':
-    // Next scene
-    texture_available = !texture_available;
+  case 'i':
+    // Enter game or leave action
+    if (stage == STARTING && my_player.status == NOT_PLAYING) stage == MIDDLE;
+    if (stage == MIDDLE && my_player.status != NOT_PLAYING) my_player.status = NOT_PLAYING;
+    break;
+  case 'j':
+    // Build
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = BUILDING;
+    break;
+  case 'k':
+    // Eat
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = EATING;
+    break;
+  case 'l':
+    // Sleep
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = SLEEPING;
     break;
   }
 }
@@ -164,8 +205,9 @@ int main (int argc, char* argv[])
   glutIdleFunc(update_state);
   glutMouseFunc(mouse_button);
   glutKeyboardFunc(glut_key);
-  texture_available = setup_texture("../img/island.jpg", texture) && setup_texture("../img/space.jpg", texture_2);
+  texture_available = setup_texture("../img/island.jpg", starting_texture) && setup_texture("../img/red_forest.jpg", not_playing_texture) && setup_texture("../img/building.jpg", building_texture);
   
+  stage = STARTING;
   glutMainLoop();
   
   return 0;

@@ -1,0 +1,4 @@
+Punishment (reduced if doing)---------------Action---------------Reward (increased if doing)
+stamina, efficiency-------------------------work-----------------boat
+efficiency, boat----------------------------eat------------------stamina
+stamina, boat-------------------------------sleep----------------efficiency

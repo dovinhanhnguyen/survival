@@ -27,6 +27,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <SOIL.h>
+#include "player_class.h"
 using namespace std;
 
 #define SMALL_NUM 0.0000001
@@ -34,11 +35,15 @@ using namespace std;
 #define PREFERRED_WIDTH 1024
 #define PREFERRED_HEIGHT 768
 
+enum game_stage { STARTING = 0, MIDDLE = 1, ENDING = 2 };
+
 // Graphics variables
 int main_window;
 double aspect_ratio, window_width, window_height;
 bool texture_available;
-GLuint texture, texture_2;
+GLuint starting_texture, not_playing_texture, building_texture;
+player my_player;
+game_stage stage;
 
 // Function prototypes
 void reshape_window (int width, int height);
