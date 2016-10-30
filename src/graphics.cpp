@@ -65,16 +65,20 @@ void draw_window (void)
           glBindTexture(GL_TEXTURE_2D, building_texture);
           break;
         case EATING:
+          glBindTexture(GL_TEXTURE_2D, eating_texture);
           break;
         case SLEEPING:
+          glBindTexture(GL_TEXTURE_2D, sleeping_texture);
           break;
       }
       break;
     case ENDING:
       switch (my_player.status) {
         case DEAD:
+          glBindTexture(GL_TEXTURE_2D, dead_texture);
           break;
         case ALIVE:
+          glBindTexture(GL_TEXTURE_2D, alive_texture);
           break;
       }
       break;
@@ -133,7 +137,7 @@ void glut_key (unsigned char k, int x, int y)
     break;
   case 'i':
     // Enter game or leave action
-    if (stage == STARTING && my_player.status == NOT_PLAYING) stage == MIDDLE;
+    if (stage == STARTING && my_player.status == NOT_PLAYING) stage = MIDDLE;
     if (stage == MIDDLE && my_player.status != NOT_PLAYING) my_player.status = NOT_PLAYING;
     break;
   case 'j':
@@ -147,6 +151,22 @@ void glut_key (unsigned char k, int x, int y)
   case 'l':
     // Sleep
     if (stage == MIDDLE && my_player.status == NOT_PLAYING) my_player.status = SLEEPING;
+    break;
+  
+  // FOR TESTING ONLY
+  case 'x':
+    // dead
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
+      stage = ENDING;
+      my_player.status = DEAD;
+    }
+    break;
+  case 'c':
+    // alive
+    if (stage == MIDDLE && my_player.status == NOT_PLAYING) {
+      stage = ENDING;
+      my_player.status = ALIVE;
+    }
     break;
   }
 }
@@ -205,7 +225,8 @@ int main (int argc, char* argv[])
   glutIdleFunc(update_state);
   glutMouseFunc(mouse_button);
   glutKeyboardFunc(glut_key);
-  texture_available = setup_texture("../img/island.jpg", starting_texture) && setup_texture("../img/red_forest.jpg", not_playing_texture) && setup_texture("../img/building.jpg", building_texture);
+  texture_available = setup_texture("../img/island.jpg", starting_texture) && setup_texture("../img/red_forest.jpg", not_playing_texture) && setup_texture("../img/building.jpg", building_texture) && setup_texture("../img/eating.jpg", eating_texture) && setup_texture("../img/sleeping.jpg", sleeping_texture) && setup_texture("../img/dead.jpg", dead_texture) && setup_texture("../img/alive.jpg", alive_texture);
+  cout << "Check texture " << texture_available << endl;
   
   stage = STARTING;
   glutMainLoop();

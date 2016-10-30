@@ -41,7 +41,7 @@ enum game_stage { STARTING = 0, MIDDLE = 1, ENDING = 2 };
 int main_window;
 double aspect_ratio, window_width, window_height;
 bool texture_available;
-GLuint starting_texture, not_playing_texture, building_texture;
+GLuint starting_texture, not_playing_texture, building_texture, eating_texture, sleeping_texture, dead_texture, alive_texture;
 player my_player;
 game_stage stage;
 
