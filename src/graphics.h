@@ -4,9 +4,25 @@
 #ifndef __GRAPHICS__
 #define __GRAPHICS__
 
+#if defined (__MINGW32__) && !defined (WIN32)
+#define WIN32
+#endif
+
+#ifdef WIN32
+#define _USE_MATH_DEFINES
+#include <windows.h>
+#else
+#include <sys/time.h>
+#include <unistd.h>
+#endif
+#ifdef __APPLE__
+#include <GLUT/glut.h>
+#else
 #include <GL/glut.h>
+#endif
 #include <iostream>
 #include <string>
+#include <sstream>
 #include <fstream>
 #include <cmath>
 #include <cstdlib>

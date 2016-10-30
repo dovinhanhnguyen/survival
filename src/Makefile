@@ -7,8 +7,10 @@ survival: graphics.o
 	then $(CC) -o survival graphics.o ${CCSW} -lGL -lGLU -lglut -lSOIL; \
 	echo Linking for Linux; \
 	elif [ ${PLATFORM} = "Darwin" ]; \
-	then $(CC) -o survival graphics.o ${CCSW} -lSOIL -framework GLUT -framework OpenGL; \
+	then $(CC) -o survival graphics.o ${CCSW} -lSOIL -framework GLUT -framework OpenGL -framework CoreFoundation; \
 	echo Linking for Mac OS X; \
+	else $(CC) -o survival graphics.o ${CCSW} -lglut32 -lglu32 -lopengl32 -lSOIL; \
+	echo Linking for Cygwin; \
 	fi
 
 graphics.o: graphics.h
