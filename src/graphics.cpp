@@ -85,6 +85,9 @@ void draw_window (void)
           draw_control_bar (-1.9, 0.4, 1.5, 0.2, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
           draw_control_bar (-1.9, -0.2, 1.5, 0.2, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
           draw_control_bar (-1.9, -0.8, 1.5, 0.2, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
+          print_bitmap(1.0, 1.0, 1.0, 0.6, 0.9, 0.0, "swing horizontally to chop woods and build a boat", GLUT_BITMAP_HELVETICA_12);
+          print_bitmap(1.0, 1.0, 1.0, 0.6, 0.5, 0.0, "swing vertically to cast fishing rod for food", GLUT_BITMAP_HELVETICA_12);
+          print_bitmap(1.0, 1.0, 1.0, 0.6, 0.1, 0.0, "press button a to have a good sleep", GLUT_BITMAP_HELVETICA_12);
           break;
         case BUILDING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Hope ...", GLUT_BITMAP_TIMES_ROMAN_24);
@@ -92,6 +95,7 @@ void draw_window (void)
           draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
           draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
           draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
+          print_bitmap(1.0, 1.0, 1.0, -2.2, 0.7, 0.0, "press b to stop working", GLUT_BITMAP_HELVETICA_12);
           break;
         case EATING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Gaining energy ...", GLUT_BITMAP_TIMES_ROMAN_24);
@@ -99,6 +103,7 @@ void draw_window (void)
           draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
           draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
           draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
+          print_bitmap(1.0, 1.0, 1.0, -2.2, 0.7, 0.0, "press b to stop eating", GLUT_BITMAP_HELVETICA_12);
           break;
         case SLEEPING:
           print_bitmap(1.0, 0.8, 1.0, 1.5, -1.6, 0.0, "Good night ...", GLUT_BITMAP_TIMES_ROMAN_24);
@@ -106,6 +111,7 @@ void draw_window (void)
           draw_control_bar (1.5, 1.3, 0.8, 0.1, my_player.stamina/100.0, 0.0, 1.0, 0.0, "Stamina");
           draw_control_bar (1.5, 1.0, 0.8, 0.1, my_player.sanity/100.0, 0.0, 1.0, 0.0, "Sanity");
           draw_control_bar (1.5, 0.7, 0.8, 0.1, my_player.time_left/30.0, 0.0, 1.0, 0.0, "Time");
+          print_bitmap(1.0, 1.0, 1.0, -2.2, 0.7, 0.0, "press b to stop sleeping", GLUT_BITMAP_HELVETICA_12);
           break;
       }
       break;

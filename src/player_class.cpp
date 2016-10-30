@@ -18,8 +18,8 @@ void player::update (void) {
       break;
     case BUILDING:
       time_left --;
-      if ((boat + int(3*(stamina/100.0 + sanity/100.0)/2.0))<=100) boat += int(3*(stamina/100.0 + sanity/100.0)/2.0);
-      else if ((boat + int(3*(stamina/100.0 + sanity/100.0)/2.0))>100) boat = 100;
+      if ((boat + int(10*(stamina/100.0 + sanity/100.0)/2.0))<=100) boat += int(10*(stamina/100.0 + sanity/100.0)/2.0);
+      else if ((boat + int(10*(stamina/100.0 + sanity/100.0)/2.0))>100) boat = 100;
       stamina -= 10;
       sanity -= 5;
       if (sanity == 0) stamina -= 10;
